@@ -1,0 +1,30 @@
+{
+	"info": {
+		"_postman_id": "0068e00c-7af0-4151-83b9-ec3f24968cfb",
+		"name": "clean-arch-example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "obter-impostos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/impostos/20581160000189/32500",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"impostos",
+						"20581160000189",
+						"32500"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
