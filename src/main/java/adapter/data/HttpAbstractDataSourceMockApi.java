@@ -11,7 +11,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @Component
-public class HttpClientMockApi implements Client {
+public class HttpAbstractDataSourceMockApi implements AbstractDataSource {
 
     @Override
     public String obterRazaoSocialPeloCnpj(String cnpj) {
@@ -22,8 +22,7 @@ public class HttpClientMockApi implements Client {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode()==200) {
-                ObjectMapper objectMapper = new ObjectMapper();
-                EmpresaMockApiDto empresaMockApiDto = objectMapper.readValue(response.body(), EmpresaMockApiDto.class);
+                EmpresaMockApiDto empresaMockApiDto = jsonParaPojo(response.body());
                 return empresaMockApiDto.getRazaoSocial();
             }
 
@@ -31,5 +30,10 @@ public class HttpClientMockApi implements Client {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private static EmpresaMockApiDto jsonParaPojo(String json) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return  objectMapper.readValue(json, EmpresaMockApiDto.class);
     }
 }

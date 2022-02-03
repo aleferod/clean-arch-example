@@ -1,6 +1,6 @@
 package adapter;
 
-import adapter.data.HttpClientMockApi;
+import adapter.data.HttpAbstractDataSourceMockApi;
 import domain.entity.Empresa;
 import domain.usecase.DadosImposto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class DadosImpostoController {
     private DadosImposto dadosImposto;
 
     @Autowired
-    private HttpClientMockApi httpClientMockApi;
+    private HttpAbstractDataSourceMockApi httpEmpresaClientMockApi;
 
     @GetMapping("/{cnpj}/{receitaBruta}")
     public ResponseEntity<Empresa> obterImpostos(
@@ -29,7 +29,7 @@ public class DadosImpostoController {
             @PathVariable("receitaBruta") String receitaBruta
     ) {
         BigDecimal valorReceitaBruta = new BigDecimal(receitaBruta).setScale(2);
-        Empresa empresa = dadosImposto.obterDadosDeImpostos(cnpj, valorReceitaBruta, httpClientMockApi);
+        Empresa empresa = dadosImposto.obterDadosDeImpostos(cnpj, valorReceitaBruta, httpEmpresaClientMockApi);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
 }

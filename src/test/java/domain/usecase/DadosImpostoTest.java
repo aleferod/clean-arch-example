@@ -1,6 +1,6 @@
 package domain.usecase;
 
-import adapter.data.HttpClientMockApi;
+import adapter.data.HttpAbstractDataSourceMockApi;
 import domain.entity.Cofins;
 import domain.entity.Empresa;
 import domain.entity.Pis;
@@ -24,7 +24,7 @@ class DadosImpostoTest {
 
         CalculoPis calculoPisMock = Mockito.spy(CalculoPis.class);
         CalculoCofins calculoCofinsMock = Mockito.spy(CalculoCofins.class);
-        HttpClientMockApi httpClientMockApiMock = Mockito.spy(HttpClientMockApi.class);
+        HttpAbstractDataSourceMockApi httpClientMockApiMock = Mockito.spy(HttpAbstractDataSourceMockApi.class);
 
         Mockito.when(calculoPisMock.executeUseCase(receitaBruta)).thenReturn(pis);
         Mockito.when(calculoCofinsMock.executeUseCase(receitaBruta)).thenReturn(cofins);

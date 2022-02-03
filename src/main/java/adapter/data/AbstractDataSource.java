@@ -1,6 +1,6 @@
 package adapter.data;
 
-public interface Client {
+public interface AbstractDataSource {
 
     String obterRazaoSocialPeloCnpj(String cnpj);
 }
