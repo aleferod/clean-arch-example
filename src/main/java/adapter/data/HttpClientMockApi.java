@@ -11,7 +11,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @Component
-public class HttpAbstractDataSourceMockApi implements AbstractDataSource {
+public class HttpClientMockApi implements AbstractDataSource {
 
     @Override
     public String obterRazaoSocialPeloCnpj(String cnpj) {
