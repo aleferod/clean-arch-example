@@ -30,7 +30,7 @@ class DadosImpostoTest {
         Mockito.when(calculoCofinsMock.executeUseCase(receitaBruta)).thenReturn(cofins);
         Mockito.when(httpClientMockApiMock.obterRazaoSocialPeloCnpj(cnpj)).thenReturn(razaoSocial);
 
-        Empresa resultado = new DadosImposto(calculoPisMock, calculoCofinsMock).obterDadosDeImpostos(cnpj, receitaBruta, httpClientMockApiMock);
+        Empresa resultado = new DadosImposto(calculoPisMock, calculoCofinsMock, httpClientMockApiMock).obterDadosDeImpostos(cnpj, receitaBruta);
         assertEquals(esperado.getCnpj(), resultado.getCnpj());
         assertEquals(esperado.getRazaoSocial(), resultado.getRazaoSocial());
         assertEquals(esperado.getReceitaBruta(), resultado.getReceitaBruta());

@@ -1,6 +1,6 @@
 package domain.usecase;
 
-import adapter.data.AbstractDataSource;
+import adapter.data.HttpClientMockApi;
 import domain.entity.Cofins;
 import domain.entity.Empresa;
 import domain.entity.Pis;
@@ -13,17 +13,20 @@ public class DadosImposto {
 
     private CalculoPis calculoPis;
     private CalculoCofins calculoCofins;
+    private HttpClientMockApi httpClientMockApi;
 
     public DadosImposto(
             CalculoPis calculoPis,
-            CalculoCofins calculoCofins
+            CalculoCofins calculoCofins,
+            HttpClientMockApi httpClientMockApi
             ) {
         this.calculoPis = calculoPis;
         this.calculoCofins = calculoCofins;
+        this.httpClientMockApi = httpClientMockApi;
     }
 
-    public Empresa obterDadosDeImpostos(String cnpj, BigDecimal receitaBruta, AbstractDataSource abstractDataSource) {
-        String razaoSocial = abstractDataSource.obterRazaoSocialPeloCnpj(cnpj);
+    public Empresa obterDadosDeImpostos(String cnpj, BigDecimal receitaBruta) {
+        String razaoSocial = httpClientMockApi.obterRazaoSocialPeloCnpj(cnpj);
         Pis pis = calculoPis.executeUseCase(receitaBruta);
         Cofins cofins = calculoCofins.executeUseCase(receitaBruta);
         return new Empresa(razaoSocial, cnpj, receitaBruta, pis, cofins);

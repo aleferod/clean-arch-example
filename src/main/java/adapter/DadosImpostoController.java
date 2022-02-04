@@ -20,16 +20,13 @@ public class DadosImpostoController {
     @Autowired
     private DadosImposto dadosImposto;
 
-    @Autowired
-    private HttpClientMockApi httpClientMockApi;
-
     @GetMapping("/{cnpj}/{receitaBruta}")
     public ResponseEntity<Empresa> obterImpostos(
             @PathVariable("cnpj") String cnpj,
             @PathVariable("receitaBruta") String receitaBruta
     ) {
         BigDecimal valorReceitaBruta = new BigDecimal(receitaBruta).setScale(2);
-        Empresa empresa = dadosImposto.obterDadosDeImpostos(cnpj, valorReceitaBruta, httpClientMockApi);
+        Empresa empresa = dadosImposto.obterDadosDeImpostos(cnpj, valorReceitaBruta);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
 }

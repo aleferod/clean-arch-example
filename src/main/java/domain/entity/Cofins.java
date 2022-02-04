@@ -16,6 +16,6 @@ public class Cofins implements Imposto{
 
     @Override
     public BigDecimal obterValorDoImposto(BigDecimal receita) {
-        return receita.multiply(Aliquota.COFINS.getValor()).divide(new BigDecimal("100")).setScale(2);
+        return receita.multiply(Aliquota.PIS.getValor()).divide(new BigDecimal("100")).setScale(2);
     }
 }
