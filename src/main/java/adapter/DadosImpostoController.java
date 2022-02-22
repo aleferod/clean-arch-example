@@ -1,6 +1,6 @@
 package adapter;
 
-import adapter.data.HttpClientMockApi;
+import adapter.data.repository.EmpresaRepository;
 import domain.entity.Empresa;
 import domain.usecase.DadosImposto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +20,9 @@ public class DadosImpostoController {
     @Autowired
     private DadosImposto dadosImposto;
 
+    @Autowired
+    EmpresaRepository empresaRepository;
+
     @GetMapping("/{cnpj}/{receitaBruta}")
     public ResponseEntity<Empresa> obterImpostos(
             @PathVariable("cnpj") String cnpj,
@@ -29,4 +32,5 @@ public class DadosImpostoController {
         Empresa empresa = dadosImposto.obterDadosDeImpostos(cnpj, valorReceitaBruta);
         return new ResponseEntity<>(empresa, HttpStatus.OK);
     }
+
 }

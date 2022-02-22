@@ -1,6 +1,7 @@
 package domain.usecase;
 
 import adapter.data.HttpClientMockApi;
+import adapter.data.repository.EmpresaRepository;
 import domain.entity.Cofins;
 import domain.entity.Empresa;
 import domain.entity.Pis;
